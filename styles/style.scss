@@ -1,0 +1,622 @@
+/* Variables */
+/* Numbers */
+$todo-item-height: 64px;
+$todo-checkbock-L-padding: 25px;
+$todo-item-L-padding: 70px;
+
+/* Colors */
+/* Primary */
+$Bright-Blue: hsl(220, 98%, 61%);
+$Check-Background: linear-gradient(129deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+
+/* Light theme */
+$Very-Light-Gray: hsl(0, 0%, 98%);
+$Very-Light-Grayish-Blue: hsl(236, 33%, 92%);
+$Light-Grayish-Blue: hsl(233, 11%, 84%);
+$Dark-Grayish-Blue: hsl(236, 9%, 61%);
+$Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
+
+/* Dark theme */
+$Very-Dark-Blue: hsl(235, 21%, 11%);
+$Very-Dark-Desaturated-Blue: hsl(235, 24%, 19%);
+$Light-Grayish-Blue: hsl(234, 39%, 85%);
+$Light-Grayish-Blue-hover: hsl(236, 33%, 92%);
+$Dark-Grayish-Blue: hsl(234, 11%, 52%);
+$Very-Dark-Grayish-Blue: hsl(233, 14%, 35%);
+$Darker-Grayish-Blue: hsl(237, 14%, 26%);
+
+/* Reset */
+/* No focus default styling */
+*:focus {
+    outline: none;
+}
+* {
+    box-sizing: border-box;
+}
+
+/* Global styles */
+:root {
+    font-size: 16px;
+}
+body {
+    font-family: 'Josefin Sans', sans-serif;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: top;
+    padding: 2rem;
+}
+main {
+    max-width: 540px;
+    margin: auto;
+}
+button {
+    border: none;
+    background: none;
+} 
+
+/* Header styles */
+header {
+    width: 100%;
+    margin-top: 67px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+        padding-top: .7rem;
+        text-transform: uppercase;
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+        letter-spacing: .9rem;
+        color: $Very-Light-Gray;
+    }
+
+    button {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+#form-add-todo {
+    margin-top: 40px;;
+    position: relative;
+    width: 100%;
+
+    div {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: $todo-checkbock-L-padding;
+        border-radius: 12px;
+        border-style: solid;
+        border-width: 1px;
+    }
+
+    input {
+        width: 100%;
+        height: $todo-item-height;
+        padding-left: $todo-item-L-padding;
+        border-radius: 5px;
+        border: none;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 1.1rem;
+
+        &::placeholder {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.1rem;
+            color: $Very-Dark-Grayish-Blue;
+        }
+    }
+
+}
+
+#section-list-footer {
+    overflow: hidden;
+    margin-top: 25px;
+    border-radius: 5px;
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    box-shadow: 0 25px 40px -5px rgba(0, 0, 0, 0.1);
+}
+
+#form-list-todo {
+    width: 100%;
+
+    li {
+        position: relative;
+        height: $todo-item-height;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+
+        .reorder {
+            opacity: 0;
+            position: absolute;
+            width: 22px;
+            padding: 0 7px;
+            flex-shrink: 0;
+            cursor: ns-resize;
+        }
+
+        .deactived {
+            display: none;
+        }
+
+        .cross {
+            opacity: 0;
+            flex-shrink: 0;
+            margin-right: 25px;
+            cursor: pointer;
+        }
+
+        &:hover > .reorder, &:hover > .cross {
+            opacity: 1;
+        }
+
+        &:hover > .reorder .deactived {
+            display: none;
+        }
+    }
+
+    input {
+        position: absolute;
+        appearance: none;
+        overflow: hidden;
+        width: 24px;
+        height: 24px;
+        margin: 0;
+        left: $todo-checkbock-L-padding;
+        border-radius: 12px;
+        border-style: solid;
+        border-width: 1px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+
+        &::after {
+            content: url("../images/icon-check.svg");
+            display: none;
+        }
+
+        &:checked {
+            background: $Check-Background;
+            border: none;
+        }
+
+        &:checked::after {
+            display: block;
+        }
+
+        &:checked + label {
+            text-decoration: line-through;
+        }
+    }
+
+    label {
+        width: 100%;
+        height: 100%;
+        padding-top: 3px;
+        padding-left: $todo-item-L-padding;
+        display: flex;
+        align-items: center;
+        font-size: 1.1rem;
+        line-break: anywhere;
+    }
+
+    input, label {
+        cursor: pointer;
+    }
+
+    .sortable-drag {
+        opacity: 0;
+    }
+}
+
+#empty-state {
+    display: none;
+    height: $todo-item-height;
+    align-items: center;
+    padding-left: 70px;
+}
+
+#empty-state.show {
+    display: flex;
+}
+
+#list-controls {
+    & > div {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr 1fr;
+        height: 50px;
+        padding: 0 25px;
+        justify-items: stretch;
+        align-items: stretch;
+
+        #wrapper-item-amount {
+            display: flex;
+            align-items: center;
+
+            p {
+                font-size: .9rem;
+            }
+        }
+
+        /* 2nd Groupe de filtres */
+        #wrapper-radio-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 1px;
+
+            & > label {
+                font-weight: 700;
+                padding: 7px 8px;
+            }
+
+            input {
+                display: none;
+                
+                &:checked + label {
+                    color: $Bright-Blue;
+                }
+            }
+        }
+
+        /* 3rd Dernier bouton */
+        #wrapper-clear-completed {
+            display: flex;
+            justify-content: right;
+            align-items: center;
+
+            button {
+                font-family: 'Josefin Sans', sans-serif;
+                color: $Dark-Grayish-Blue;
+                padding: 7px 0 7px 7px;
+            }
+        }
+    }
+
+    button, label {
+        cursor: pointer;
+    }
+}
+
+footer {
+    p{
+        max-width: max-content;
+        margin: 55px auto 0 auto;
+        font-size: .85rem;
+    }
+}
+
+/* Theme color */
+.light-mode {
+    background-image: url("../images/bg-desktop-light.jpg");
+    background-color: $Very-Light-Gray;
+
+    #section-list-footer {
+        /* offset-x | offset-y | blur-radius | spread-radius | color */
+        box-shadow: 0 25px 40px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+        button {
+            background-image: url("../images/icon-moon.svg");
+        }
+    }
+
+    #form-add-todo {
+        input {
+            background-color: white;
+            color: $Very-Dark-Grayish-Blue;
+
+            &::placeholder {
+                color: $Very-Dark-Grayish-Blue;
+            }
+        }
+        div {
+            border-color: $Very-Light-Grayish-Blue;
+        }
+    }
+
+    #form-list-todo {
+        background-color: white;
+
+        li {
+            border-bottom-color: $Very-Light-Grayish-Blue;
+        }
+        input {
+            border-color: $Very-Light-Grayish-Blue;
+
+            &:checked + label {
+                color: $Light-Grayish-Blue;
+            }
+
+            &:hover {
+                border-color: $Bright-Blue;
+            }    
+        }
+
+        label {
+            color: $Very-Dark-Grayish-Blue;
+        }
+
+        .sortable-chosen {
+            background-color: hsl(220, 98%, 61%, 5%);
+        }
+    }
+
+    #empty-state {
+        background-color: #ffe7e5;
+        color: $Very-Dark-Desaturated-Blue;
+    }
+
+    #list-controls {
+        color: $Dark-Grayish-Blue;
+
+        & > div {
+            background-color: white;
+            & > button {
+                color: $Dark-Grayish-Blue;
+
+                &:hover {
+                    color: $Very-Dark-Grayish-Blue;
+                }
+            }
+
+            label {
+                &:hover {
+                    color: $Very-Dark-Grayish-Blue;
+                }
+            }
+
+            input:checked + label {
+                &:hover {
+                    color: $Bright-Blue;
+                }
+            }
+        }
+    }
+
+    footer {
+        color: $Dark-Grayish-Blue;
+    }
+}
+
+.dark-mode {
+    background-image: url("../images/bg-desktop-dark.jpg");
+    background-color: $Very-Dark-Blue;
+
+    #section-list-footer {
+        /* offset-x | offset-y | blur-radius | spread-radius | color */
+        box-shadow: 0 25px 40px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    header {
+        button {
+            background-image: url("../images/icon-sun.svg");
+        }
+    }
+
+    #form-add-todo {
+        input {
+            background-color: $Very-Dark-Desaturated-Blue;
+            color: $Light-Grayish-Blue;
+
+            &::placeholder {
+                color: $Light-Grayish-Blue;
+            }
+        }
+        div {
+            border-color: $Darker-Grayish-Blue;
+        }
+    }
+
+    #form-list-todo {
+        background-color: $Very-Dark-Desaturated-Blue;
+
+        li {
+            border-bottom-color: $Darker-Grayish-Blue;
+        }
+        input {
+            border-color: $Darker-Grayish-Blue;
+
+            &:checked + label {
+                color: $Very-Dark-Grayish-Blue;
+            }
+
+            &:hover {
+                border-color: $Bright-Blue;
+            }
+    
+        }
+
+        label {
+            color: $Light-Grayish-Blue;
+        }
+
+        .sortable-chosen {
+            background-color: hsl(220, 98%, 61%, 10%);
+        }
+    }
+
+    #empty-state {
+        background-color: hsl(6, 20%, 25%);
+        color: $Light-Grayish-Blue;
+    }
+
+    #list-controls{
+        color: $Dark-Grayish-Blue;
+
+        & > div {
+            background-color: $Very-Dark-Desaturated-Blue;
+            & > button {
+                color: $Dark-Grayish-Blue;
+
+                &:hover {
+                    color: $Light-Grayish-Blue;
+                }
+            }
+
+            label {
+                &:hover {
+                    color: $Light-Grayish-Blue-hover;
+                }
+            }
+
+            input:checked + label {
+                &:hover {
+                    color: $Bright-Blue;
+                }
+            }
+        }
+    }
+
+    footer {
+        color: $Very-Dark-Grayish-Blue;
+    }
+}
+
+/* Responsive */
+@media screen and (max-width: 375px) {
+    :root {
+        font-size: 12px;
+    }
+
+    body {
+        background-size: auto 200px;
+    }
+
+    header {
+        margin-top: 22px;
+
+        h1 {
+            font-size: 2rem;
+        }
+    }
+
+    #form-add-todo {
+        margin-top: 25px;
+
+        div {
+            width: 20px;
+            height: 20px;
+            left: 20px;
+        }
+
+        input {
+            height: 48px;
+            padding-left: 52px;
+            font-size: 1rem;
+
+            &::placeholder {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    #section-list-footer {
+        margin-top: 16px;
+        box-shadow: none;
+        overflow: visible;
+    }
+
+    #form-list-todo {
+        box-shadow: 0 25px 40px -5px rgba(0, 0, 0, 0.1);
+        border-radius: 5px 5px 0 0;
+
+        li {
+            height: 53px;
+            padding-right: 0;
+
+            .cross {
+                opacity: 1;
+                margin-right: 17px;
+                transform: scale(.7);
+            }
+        }
+
+        input {
+            width: 20px;
+            height: 20px;
+            left: 20px;
+        }
+
+        label {
+            padding-left: 52px;
+            font-size: 1rem;
+        }
+    }
+
+    #list-controls {
+        div {
+            height: auto;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 50px 48px;
+            row-gap: 16px;
+            padding: 0; 
+
+            /* 1st Item amount */
+            #wrapper-item-amount {
+                padding-left: 20px;
+                border-radius: 0 0 0 5px;
+
+                p {
+                    font-size: 1rem;
+                }
+            }
+
+            /* 2nd Radio list */
+            #wrapper-radio-list {
+                z-index: -1;
+                order: 3;
+                grid-column: span 2;
+                /* offset-x | offset-y | blur-radius | spread-radius | color */
+                box-shadow: 0 0px 40px -20px rgba(0, 0, 0, 0.2);
+                border-radius: 5px;
+                font-size: 1.2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* 3rd Clear completed */
+            #wrapper-clear-completed {
+                padding-right: 20px;
+                border-radius: 0 0 5px 0;
+
+                button {
+                    order: 2;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+    footer {
+        p {
+            margin-top: 45px;
+            font-size: 1.2rem;
+        }
+    }
+
+    .light-mode {
+        #section-list-footer {
+            box-shadow: none;
+        }
+
+        #list-controls {
+            /* Grid element */
+            div {
+                background: transparent;
+
+                & > * {
+                    background-color: white;
+                }
+            }
+        }
+    }
+}

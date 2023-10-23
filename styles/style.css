@@ -1,0 +1,510 @@
+/* Variables */
+/* Numbers */
+/* Colors */
+/* Primary */
+/* Light theme */
+/* Dark theme */
+/* Reset */
+/* No focus default styling */
+*:focus {
+  outline: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Global styles */
+:root {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: top;
+  padding: 2rem;
+}
+
+main {
+  max-width: 540px;
+  margin: auto;
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+/* Header styles */
+header {
+  width: 100%;
+  margin-top: 67px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header h1 {
+  padding-top: 0.7rem;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.9rem;
+  color: hsl(0, 0%, 98%);
+}
+header button {
+  width: 26px;
+  height: 26px;
+}
+
+#form-add-todo {
+  margin-top: 40px;
+  position: relative;
+  width: 100%;
+}
+#form-add-todo div {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 25px;
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 1px;
+}
+#form-add-todo input {
+  width: 100%;
+  height: 64px;
+  padding-left: 70px;
+  border-radius: 5px;
+  border: none;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.1rem;
+}
+#form-add-todo input::-moz-placeholder {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.1rem;
+  color: hsl(233, 14%, 35%);
+}
+#form-add-todo input::placeholder {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.1rem;
+  color: hsl(233, 14%, 35%);
+}
+
+#section-list-footer {
+  overflow: hidden;
+  margin-top: 25px;
+  border-radius: 5px;
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: 0 25px 40px -5px rgba(0, 0, 0, 0.1);
+}
+
+#form-list-todo {
+  width: 100%;
+}
+#form-list-todo li {
+  position: relative;
+  height: 64px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+#form-list-todo li .reorder {
+  opacity: 0;
+  position: absolute;
+  width: 22px;
+  padding: 0 7px;
+  flex-shrink: 0;
+  cursor: ns-resize;
+}
+#form-list-todo li .deactived {
+  display: none;
+}
+#form-list-todo li .cross {
+  opacity: 0;
+  flex-shrink: 0;
+  margin-right: 25px;
+  cursor: pointer;
+}
+#form-list-todo li:hover > .reorder, #form-list-todo li:hover > .cross {
+  opacity: 1;
+}
+#form-list-todo li:hover > .reorder .deactived {
+  display: none;
+}
+#form-list-todo input {
+  position: absolute;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  overflow: hidden;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  left: 25px;
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 1px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+#form-list-todo input::after {
+  content: url("../images/icon-check.svg");
+  display: none;
+}
+#form-list-todo input:checked {
+  background: linear-gradient(129deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  border: none;
+}
+#form-list-todo input:checked::after {
+  display: block;
+}
+#form-list-todo input:checked + label {
+  text-decoration: line-through;
+}
+#form-list-todo label {
+  width: 100%;
+  height: 100%;
+  padding-top: 3px;
+  padding-left: 70px;
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  line-break: anywhere;
+}
+#form-list-todo input, #form-list-todo label {
+  cursor: pointer;
+}
+#form-list-todo .sortable-drag {
+  opacity: 0;
+}
+
+#empty-state {
+  display: none;
+  height: 64px;
+  align-items: center;
+  padding-left: 70px;
+}
+
+#empty-state.show {
+  display: flex;
+}
+
+#list-controls > div {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  height: 50px;
+  padding: 0 25px;
+  justify-items: stretch;
+  align-items: stretch;
+  /* 2nd Groupe de filtres */
+  /* 3rd Dernier bouton */
+}
+#list-controls > div #wrapper-item-amount {
+  display: flex;
+  align-items: center;
+}
+#list-controls > div #wrapper-item-amount p {
+  font-size: 0.9rem;
+}
+#list-controls > div #wrapper-radio-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -moz-column-gap: 1px;
+       column-gap: 1px;
+}
+#list-controls > div #wrapper-radio-list > label {
+  font-weight: 700;
+  padding: 7px 8px;
+}
+#list-controls > div #wrapper-radio-list input {
+  display: none;
+}
+#list-controls > div #wrapper-radio-list input:checked + label {
+  color: hsl(220, 98%, 61%);
+}
+#list-controls > div #wrapper-clear-completed {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+#list-controls > div #wrapper-clear-completed button {
+  font-family: "Josefin Sans", sans-serif;
+  color: hsl(234, 11%, 52%);
+  padding: 7px 0 7px 7px;
+}
+#list-controls button, #list-controls label {
+  cursor: pointer;
+}
+
+footer p {
+  max-width: -moz-max-content;
+  max-width: max-content;
+  margin: 55px auto 0 auto;
+  font-size: 0.85rem;
+}
+
+/* Theme color */
+.light-mode {
+  background-image: url("../images/bg-desktop-light.jpg");
+  background-color: hsl(0, 0%, 98%);
+}
+.light-mode #section-list-footer {
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: 0 25px 40px -5px rgba(0, 0, 0, 0.1);
+}
+.light-mode header button {
+  background-image: url("../images/icon-moon.svg");
+}
+.light-mode #form-add-todo input {
+  background-color: white;
+  color: hsl(233, 14%, 35%);
+}
+.light-mode #form-add-todo input::-moz-placeholder {
+  color: hsl(233, 14%, 35%);
+}
+.light-mode #form-add-todo input::placeholder {
+  color: hsl(233, 14%, 35%);
+}
+.light-mode #form-add-todo div {
+  border-color: hsl(236, 33%, 92%);
+}
+.light-mode #form-list-todo {
+  background-color: white;
+}
+.light-mode #form-list-todo li {
+  border-bottom-color: hsl(236, 33%, 92%);
+}
+.light-mode #form-list-todo input {
+  border-color: hsl(236, 33%, 92%);
+}
+.light-mode #form-list-todo input:checked + label {
+  color: hsl(234, 39%, 85%);
+}
+.light-mode #form-list-todo input:hover {
+  border-color: hsl(220, 98%, 61%);
+}
+.light-mode #form-list-todo label {
+  color: hsl(233, 14%, 35%);
+}
+.light-mode #form-list-todo .sortable-chosen {
+  background-color: hsla(220, 98%, 61%, 0.05);
+}
+.light-mode #empty-state {
+  background-color: #ffe7e5;
+  color: hsl(235, 24%, 19%);
+}
+.light-mode #list-controls {
+  color: hsl(234, 11%, 52%);
+}
+.light-mode #list-controls > div {
+  background-color: white;
+}
+.light-mode #list-controls > div > button {
+  color: hsl(234, 11%, 52%);
+}
+.light-mode #list-controls > div > button:hover {
+  color: hsl(233, 14%, 35%);
+}
+.light-mode #list-controls > div label:hover {
+  color: hsl(233, 14%, 35%);
+}
+.light-mode #list-controls > div input:checked + label:hover {
+  color: hsl(220, 98%, 61%);
+}
+.light-mode footer {
+  color: hsl(234, 11%, 52%);
+}
+
+.dark-mode {
+  background-image: url("../images/bg-desktop-dark.jpg");
+  background-color: hsl(235, 21%, 11%);
+}
+.dark-mode #section-list-footer {
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: 0 25px 40px -5px rgba(0, 0, 0, 0.3);
+}
+.dark-mode header button {
+  background-image: url("../images/icon-sun.svg");
+}
+.dark-mode #form-add-todo input {
+  background-color: hsl(235, 24%, 19%);
+  color: hsl(234, 39%, 85%);
+}
+.dark-mode #form-add-todo input::-moz-placeholder {
+  color: hsl(234, 39%, 85%);
+}
+.dark-mode #form-add-todo input::placeholder {
+  color: hsl(234, 39%, 85%);
+}
+.dark-mode #form-add-todo div {
+  border-color: hsl(237, 14%, 26%);
+}
+.dark-mode #form-list-todo {
+  background-color: hsl(235, 24%, 19%);
+}
+.dark-mode #form-list-todo li {
+  border-bottom-color: hsl(237, 14%, 26%);
+}
+.dark-mode #form-list-todo input {
+  border-color: hsl(237, 14%, 26%);
+}
+.dark-mode #form-list-todo input:checked + label {
+  color: hsl(233, 14%, 35%);
+}
+.dark-mode #form-list-todo input:hover {
+  border-color: hsl(220, 98%, 61%);
+}
+.dark-mode #form-list-todo label {
+  color: hsl(234, 39%, 85%);
+}
+.dark-mode #form-list-todo .sortable-chosen {
+  background-color: hsla(220, 98%, 61%, 0.1);
+}
+.dark-mode #empty-state {
+  background-color: hsl(6, 20%, 25%);
+  color: hsl(234, 39%, 85%);
+}
+.dark-mode #list-controls {
+  color: hsl(234, 11%, 52%);
+}
+.dark-mode #list-controls > div {
+  background-color: hsl(235, 24%, 19%);
+}
+.dark-mode #list-controls > div > button {
+  color: hsl(234, 11%, 52%);
+}
+.dark-mode #list-controls > div > button:hover {
+  color: hsl(234, 39%, 85%);
+}
+.dark-mode #list-controls > div label:hover {
+  color: hsl(236, 33%, 92%);
+}
+.dark-mode #list-controls > div input:checked + label:hover {
+  color: hsl(220, 98%, 61%);
+}
+.dark-mode footer {
+  color: hsl(233, 14%, 35%);
+}
+
+/* Responsive */
+@media screen and (max-width: 375px) {
+  :root {
+    font-size: 12px;
+  }
+  body {
+    background-size: auto 200px;
+  }
+  header {
+    margin-top: 22px;
+  }
+  header h1 {
+    font-size: 2rem;
+  }
+  #form-add-todo {
+    margin-top: 25px;
+  }
+  #form-add-todo div {
+    width: 20px;
+    height: 20px;
+    left: 20px;
+  }
+  #form-add-todo input {
+    height: 48px;
+    padding-left: 52px;
+    font-size: 1rem;
+  }
+  #form-add-todo input::-moz-placeholder {
+    font-size: 1rem;
+  }
+  #form-add-todo input::placeholder {
+    font-size: 1rem;
+  }
+  #section-list-footer {
+    margin-top: 16px;
+    box-shadow: none;
+    overflow: visible;
+  }
+  #form-list-todo {
+    box-shadow: 0 25px 40px -5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px 5px 0 0;
+  }
+  #form-list-todo li {
+    height: 53px;
+    padding-right: 0;
+  }
+  #form-list-todo li .cross {
+    opacity: 1;
+    margin-right: 17px;
+    transform: scale(0.7);
+  }
+  #form-list-todo input {
+    width: 20px;
+    height: 20px;
+    left: 20px;
+  }
+  #form-list-todo label {
+    padding-left: 52px;
+    font-size: 1rem;
+  }
+  #list-controls div {
+    height: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50px 48px;
+    row-gap: 16px;
+    padding: 0;
+    /* 1st Item amount */
+    /* 2nd Radio list */
+    /* 3rd Clear completed */
+  }
+  #list-controls div #wrapper-item-amount {
+    padding-left: 20px;
+    border-radius: 0 0 0 5px;
+  }
+  #list-controls div #wrapper-item-amount p {
+    font-size: 1rem;
+  }
+  #list-controls div #wrapper-radio-list {
+    z-index: -1;
+    order: 3;
+    grid-column: span 2;
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    box-shadow: 0 0px 40px -20px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #list-controls div #wrapper-clear-completed {
+    padding-right: 20px;
+    border-radius: 0 0 5px 0;
+  }
+  #list-controls div #wrapper-clear-completed button {
+    order: 2;
+    font-size: 1rem;
+  }
+  footer p {
+    margin-top: 45px;
+    font-size: 1.2rem;
+  }
+  .light-mode #section-list-footer {
+    box-shadow: none;
+  }
+  .light-mode #list-controls {
+    /* Grid element */
+  }
+  .light-mode #list-controls div {
+    background: transparent;
+  }
+  .light-mode #list-controls div > * {
+    background-color: white;
+  }
+}/*# sourceMappingURL=style.css.map */

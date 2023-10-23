@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Script -->
+    <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+    <script src="script.js" defer></script>
+
+    <title>Frontend Mentor | Todo app</title>
+
+    <style></style>
+  </head>
+  <body class="light-mode">
+    <main>
+      <header>
+        <h1>Todo</h1>
+        <button
+          type="button"
+          id="theme-switch"
+          alt="Switch to light/dark mode"
+        ></button>
+      </header>
+      <section>
+        <form id="form-add-todo">
+          <div></div>
+          <input
+            type="text"
+            name="add-todo"
+            id="add-todo"
+            placeholder="Create a new todo..."
+          />
+        </form>
+      </section>
+      <section id="section-list-footer">
+        <form id="form-list-todo">
+          <ul></ul>
+          <div id="empty-state">
+            <p></p>
+          </div>
+        </form>
+        <div id="list-controls">
+          <div>
+            <div id="wrapper-item-amount">
+              <p>items left</p>
+            </div>
+            <div id="wrapper-radio-list">
+              <input type="radio" name="filter" id="all" value="all" checked/>
+              <label for="all">All</label>
+              <input type="radio" name="filter" id="active" value="active" />
+              <label for="active">Active</label>
+              <input
+                type="radio"
+                name="filter"
+                id="completed"
+                value="completed"
+              />
+              <label for="completed">Completed</label>
+            </div>
+            <div id="wrapper-clear-completed">
+              <button type="button" value="Clear Completed">
+                Clear Completed
+              </button>
+            </div>
+          </div>
+      </section>
+      <footer>
+        <p>In the All tab drag and drop to reorder list</p>
+      </footer>
+    </main>
+
+    <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+  </body>
+</html>
