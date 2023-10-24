@@ -181,8 +181,12 @@ header button {
 #form-list-todo input, #form-list-todo label {
   cursor: pointer;
 }
-#form-list-todo .sortable-drag {
-  opacity: 0;
+#form-list-todo .ui-sortable-placeholder {
+  border-bottom: solid 1;
+}
+#form-list-todo .ui-sortable-helper {
+  border-bottom: none;
+  border-radius: 5px;
 }
 
 #empty-state {
@@ -297,8 +301,8 @@ footer p span {
 .light-mode #form-list-todo label {
   color: hsl(233, 14%, 35%);
 }
-.light-mode #form-list-todo .sortable-chosen {
-  background-color: hsla(220, 98%, 61%, 0.05);
+.light-mode #form-list-todo .ui-sortable-helper {
+  background-color: hsl(220, 98%, 95%);
 }
 .light-mode #empty-state {
   background-color: #ffe7e5;
@@ -368,8 +372,8 @@ footer p span {
 .dark-mode #form-list-todo label {
   color: hsl(234, 39%, 85%);
 }
-.dark-mode #form-list-todo .sortable-chosen {
-  background-color: hsla(220, 98%, 61%, 0.1);
+.dark-mode #form-list-todo .ui-sortable-helper {
+  background-color: hsl(220, 50%, 30%);
 }
 .dark-mode #empty-state {
   background-color: hsl(6, 20%, 25%);

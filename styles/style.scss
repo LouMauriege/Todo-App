@@ -210,8 +210,13 @@ header {
         cursor: pointer;
     }
 
-    .sortable-drag {
-        opacity: 0;
+    .ui-sortable-placeholder {
+        border-bottom: solid 1;
+    }   
+
+    .ui-sortable-helper {
+        border-bottom: none;
+        border-radius: 5px;
     }
 }
 
@@ -346,10 +351,10 @@ footer {
 
         label {
             color: $Very-Dark-Grayish-Blue;
-        }
+        }     
 
-        .sortable-chosen {
-            background-color: hsl(220, 98%, 61%, 5%);
+        .ui-sortable-helper {
+            background-color: hsl(220, 98%, 95%);
         }
     }
 
@@ -442,8 +447,8 @@ footer {
             color: $Light-Grayish-Blue;
         }
 
-        .sortable-chosen {
-            background-color: hsl(220, 98%, 61%, 10%);
+        .ui-sortable-helper {
+            background-color: hsl(220, 50%, 30%);
         }
     }
 
