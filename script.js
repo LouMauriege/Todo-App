@@ -69,35 +69,46 @@ function initClearCompleted() {
  */
 // Create the sortable interaction
 function initSortable() {
-    // Create sortable
-    const sortableList = document.querySelector("#form-list-todo ul");
-    new Sortable(sortableList, {
-        handle: '.reorder',
-        animation: 150,
-        ghostClass: "sortable-ghost",
-        chosenClass: "sortable-chosen",
-        dragClass: "sortable-drag",
-        onEnd: function () {
-            const listDisplayed = document.querySelectorAll("li label");
-            const taskCompleted = document.querySelectorAll("li input");
-            clearTodolist();
-            for (let i = 0; i < listDisplayed.length; i++) {
-                createElement(i, listDisplayed[i].innerText, taskCompleted[i].checked);
-                todoList[i].id = i;
-                todoList[i].nom = listDisplayed[i].innerText;
-                todoList[i].complete = taskCompleted[i].checked;
-            }
-            itemsLeft();
-            checkArrayEmpty(todoList);
-            initCompleteTasks(todoList);
-            initDeleteTask();
-            const buttonsFilter = document.querySelectorAll('[name="filter"]');
-            if (buttonsFilter[0].checked) {
-                initSortable();
-            }
-            checkForDraggableIcon();
-        }
+    $("#form-list-todo ul").sortable({
+        handle: ".reorder"
     });
+    ;
+    // const sortableList: HTMLUListElement | null = document.querySelector("#form-list-todo ul");
+    // console.log(sortableList);
+    // sortableList.sortable({
+    //   handle: ".reorder"
+    // });
+    // const handleSortable: HTMLElement | null = document.querySelector(".reorder");
+    // handleSortable.sortable( "option", "handle", ".handle" );
+    // // Create sortable
+    // const sortableList: HTMLUListElement | null = document.querySelector("#form-list-todo ul");
+    // new Sortable(sortableList, {
+    //   handle: '.reorder', // handle's class
+    //   animation: 150,
+    //   ghostClass: "sortable-ghost",  // Class de l'élément qui suis dans la todo
+    //   chosenClass: "sortable-chosen",  // Class name for the chosen item
+    //   dragClass: "sortable-drag",  // Class de l'élément qui suis la souris
+    //   onEnd: function () {
+    //     const listDisplayed: NodeListOf<HTMLLIElement> = document.querySelectorAll("li label");
+    //     const taskCompleted: NodeListOf<HTMLInputElement> = document.querySelectorAll("li input");
+    //     clearTodolist();
+    //     for (let i = 0; i < listDisplayed.length; i++) {
+    //       createElement(i, listDisplayed[i].innerText, taskCompleted[i].checked);
+    //       todoList[i].id = i;
+    //       todoList[i].nom = listDisplayed[i].innerText;
+    //       todoList[i].complete = taskCompleted[i].checked;
+    //     }
+    //     itemsLeft();
+    //     checkArrayEmpty(todoList);
+    //     initCompleteTasks(todoList);
+    //     initDeleteTask();
+    //     const buttonsFilter: NodeListOf<HTMLInputElement> | null = document.querySelectorAll('[name="filter"]');
+    //     if (buttonsFilter[0].checked) {
+    //       initSortable();
+    //     }
+    //     checkForDraggableIcon();
+    //   }
+    // });
 }
 function checkForDraggableIcon() {
     const buttonsFilter = document.querySelectorAll('[name="filter"]');
@@ -300,9 +311,9 @@ function createTodolist(choosentodoList) {
     initCompleteTasks(choosentodoList);
     initDeleteTask();
     const buttonsFilter = document.querySelectorAll('[name="filter"]');
-    if (buttonsFilter[0].checked) {
-        initSortable();
-    }
+    // if (buttonsFilter[0].checked) {
+    //   initSortable();
+    // }
     checkForDraggableIcon();
     initClearCompleted();
 }
