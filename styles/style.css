@@ -450,6 +450,7 @@ footer p span {
   }
   #form-list-todo li .reorder {
     opacity: 1;
+    padding: 0;
   }
   #form-list-todo li input {
     width: 20px;
