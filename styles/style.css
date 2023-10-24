@@ -250,6 +250,9 @@ footer p {
   margin: 55px auto 0 auto;
   font-size: 0.85rem;
 }
+footer p span {
+  font-weight: 700;
+}
 
 /* Theme color */
 .light-mode {
@@ -414,11 +417,11 @@ footer p {
   #form-add-todo div {
     width: 20px;
     height: 20px;
-    left: 20px;
+    left: 30px;
   }
   #form-add-todo input {
     height: 48px;
-    padding-left: 52px;
+    padding-left: 62px;
     font-size: 1rem;
   }
   #form-add-todo input::-moz-placeholder {
@@ -445,13 +448,16 @@ footer p {
     margin-right: 17px;
     transform: scale(0.7);
   }
-  #form-list-todo input {
+  #form-list-todo li .reorder {
+    opacity: 1;
+  }
+  #form-list-todo li input {
     width: 20px;
     height: 20px;
-    left: 20px;
+    left: 30px;
   }
-  #form-list-todo label {
-    padding-left: 52px;
+  #form-list-todo li label {
+    padding-left: 62px;
     font-size: 1rem;
   }
   #list-controls div {
@@ -472,7 +478,7 @@ footer p {
     font-size: 1rem;
   }
   #list-controls div #wrapper-radio-list {
-    z-index: -1;
+    z-index: 1;
     order: 3;
     grid-column: span 2;
     /* offset-x | offset-y | blur-radius | spread-radius | color */
@@ -506,5 +512,17 @@ footer p {
   }
   .light-mode #list-controls div > * {
     background-color: white;
+  }
+  .dark-mode #section-list-footer {
+    box-shadow: none;
+  }
+  .dark-mode #list-controls {
+    /* Grid element */
+  }
+  .dark-mode #list-controls div {
+    background: transparent;
+  }
+  .dark-mode #list-controls div > * {
+    background-color: hsl(235, 24%, 19%);
   }
 }/*# sourceMappingURL=style.css.map */

@@ -289,6 +289,10 @@ footer {
         max-width: max-content;
         margin: 55px auto 0 auto;
         font-size: .85rem;
+
+        span {
+            font-weight: 700;
+        }
     }
 }
 
@@ -504,12 +508,12 @@ footer {
         div {
             width: 20px;
             height: 20px;
-            left: 20px;
+            left: 30px;
         }
 
         input {
             height: 48px;
-            padding-left: 52px;
+            padding-left: 62px;
             font-size: 1rem;
 
             &::placeholder {
@@ -537,17 +541,21 @@ footer {
                 margin-right: 17px;
                 transform: scale(.7);
             }
-        }
 
-        input {
-            width: 20px;
-            height: 20px;
-            left: 20px;
-        }
+            .reorder {
+                opacity: 1;
+            }
 
-        label {
-            padding-left: 52px;
-            font-size: 1rem;
+            input {
+                width: 20px;
+                height: 20px;
+                left: 30px;
+            }
+    
+            label {
+                padding-left: 62px;
+                font-size: 1rem;
+            }
         }
     }
 
@@ -571,7 +579,7 @@ footer {
 
             /* 2nd Radio list */
             #wrapper-radio-list {
-                z-index: -1;
+                z-index: 1;
                 order: 3;
                 grid-column: span 2;
                 /* offset-x | offset-y | blur-radius | spread-radius | color */
@@ -615,6 +623,23 @@ footer {
 
                 & > * {
                     background-color: white;
+                }
+            }
+        }
+    }
+
+    .dark-mode {
+        #section-list-footer {
+            box-shadow: none;
+        }
+
+        #list-controls {
+            /* Grid element */
+            div {
+                background: transparent;
+
+                & > * {
+                    background-color: $Very-Dark-Desaturated-Blue;
                 }
             }
         }
